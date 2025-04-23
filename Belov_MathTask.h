@@ -10,10 +10,19 @@ bool UserInput(string input)
 {
     //если строка пустая - ввод некорректен
     if(input.empty()) return false;
+    bool onlyDigits=true;
+    for(char c:input){
+        if(!isdigit(c)){
+            onlyDigits=false;
+            break;
+        }
+    }
     //попытаться
     try{
         //преобразование введенного значения в тип
         int number = stoi(input);
+        if(number<0) return false;
+        if(!onlyDigits) return false;
     }
     catch(...) //если возникла ошибка в блоке try
     {return false;}
